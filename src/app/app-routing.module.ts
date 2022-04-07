@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'add-restaurant',
+    redirectTo: 'list',
     pathMatch: 'full'
   },
   {

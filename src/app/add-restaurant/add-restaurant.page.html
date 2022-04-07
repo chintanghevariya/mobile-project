@@ -18,22 +18,22 @@
   </div>
   <div>
     <ion-label>Name</ion-label>
-    <ion-input type="name" placeholder="Enter name of restaurant" [(ngModel)]="email"></ion-input>
+    <ion-input type="text" placeholder="Enter name of restaurant" [(ngModel)]="name"></ion-input>
   </div>
   <div>
     <ion-label>address</ion-label>
-    <ion-input type="text" placeholder="Enter street" [(ngModel)]="password"></ion-input>
-    <ion-input type="text" placeholder="Enter city" [(ngModel)]="password"></ion-input>
-    <ion-input type="text" placeholder="Enter zipcode" [(ngModel)]="password"></ion-input>
+    <ion-input type="text" placeholder="Enter street" [(ngModel)]="street"></ion-input>
+    <ion-input type="text" placeholder="Enter city" [(ngModel)]="city"></ion-input>
+    <ion-input type="text" placeholder="Enter zipcode" [(ngModel)]="zipCode"></ion-input>
   </div>
   <div>
     <ion-label>Description</ion-label>
-    <ion-textarea type="text" placeholder="Enter Description" [(ngModel)]="password"></ion-textarea>
+    <ion-textarea type="text" placeholder="Enter Description" [(ngModel)]="description"></ion-textarea>
   </div>
   <div>
     <ion-label>tags</ion-label>
-    <ion-input type="text" placeholder="Enter tags" [(ngModel)]="password"></ion-input>
+    <ion-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input>
   </div>
-  <ion-button (click)="loginUser()" role="button">Login</ion-button>
+  <ion-button (click)="addRestaurant()" role="button">Add</ion-button>
 </ion-content>
 
