@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <img src="http://www.drandsirrentals.com/news/wp-content/uploads/2017/10/dining.jpg" width="150" height="100" itemprop="image">
+    <ionic-rating-component #rating
+    activeIcon = "ios-star"
+    defaultIcon = "ios-star-outline"
+    activeColor = "#488aff" 
+    defaultColor = "#f4f4f4"
+    readonly="false"
+    rating="3"
+    fontSize = "32px"
+    (ratingChanged)="onRatingChange($event)">
+    </ionic-rating-component>
+  </div>
+
+</ion-content>
