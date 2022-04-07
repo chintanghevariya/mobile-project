@@ -31,7 +31,7 @@ export class AuthService {
       allUsers = [];
     }
     const userWithSameEmail = allUsers.find(user => user.email === email);
-    if (userWithSameEmail === undefined) {
+    if (userWithSameEmail !== undefined) {
       throw "User with same email already exists";
     }
     if (password.length < 3) {
