@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>addRestaurant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="error !== ''">
+    <ion-text color="danger">
+      {{ error }}
+    </ion-text>
+  </div>
+  <div *ngIf="success !== ''">
+    <ion-text color="success">
+      {{ success }}
+    </ion-text>
+  </div>
+  <div>
+    <ion-label>Name</ion-label>
+    <ion-input type="name" placeholder="Enter name of restaurant" [(ngModel)]="email"></ion-input>
+  </div>
+  <div>
+    <ion-label>address</ion-label>
+    <ion-input type="text" placeholder="Enter street" [(ngModel)]="password"></ion-input>
+    <ion-input type="text" placeholder="Enter city" [(ngModel)]="password"></ion-input>
+    <ion-input type="text" placeholder="Enter zipcode" [(ngModel)]="password"></ion-input>
+  </div>
+  <div>
+    <ion-label>Description</ion-label>
+    <ion-textarea type="text" placeholder="Enter Description" [(ngModel)]="password"></ion-textarea>
+  </div>
+  <div>
+    <ion-label>tags</ion-label>
+    <ion-input type="text" placeholder="Enter tags" [(ngModel)]="password"></ion-input>
+  </div>
+  <ion-button (click)="loginUser()" role="button">Login</ion-button>
+</ion-content>
+
