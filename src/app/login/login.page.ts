@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
       .then(() => {
         this.success = "Logged in";
         this.error = "";
+        this.router.navigateByUrl('/list')
       })
       .catch(err => {
         this.error = err;

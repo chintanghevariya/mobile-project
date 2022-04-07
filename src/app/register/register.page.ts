@@ -15,7 +15,10 @@ export class RegisterPage implements OnInit {
   password : any
   success: string;
   error: string;
-  constructor(private auth : AuthService) { }
+  constructor(
+    private router: Router,
+    private auth : AuthService
+  ) { }
 
   ngOnInit() {
   }
@@ -27,6 +30,7 @@ export class RegisterPage implements OnInit {
     .then(() => {
       this.success = "Registration Successfull";
       this.error = "";
+      this.router.navigateByUrl('/login')
     })
     .catch(err => {
       this.error = err;
@@ -34,6 +38,9 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  goToLogin() {
+    this.router.navigate(["/login"]);
+  }
   
 
 }
