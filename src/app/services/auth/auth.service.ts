@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,13 @@ export class AuthService {
     let allUsers = await this.storage.get("users");
     if (allUsers === null || allUsers === undefined) {
       allUsers = [];
+    }
+    const userWithSameEmail = allUsers.find(user => user.email === email);
+    if (userWithSameEmail === undefined) {
+      throw "User with same email already exists";
+    }
+    if (password.length < 3) {
+      throw "Password must be of 3 letters in length";
     }
     allUsers.push({
       email, password, firstName, lastName
