@@ -6,14 +6,24 @@
 
 
 <ion-content>
-  <div>
-    <!-- <ion-label>Email</ion-label> -->
-    <ion-input type="text" placeholder="Enter Username"></ion-input>
+  <div *ngIf="error !== ''">
+    <ion-text color="danger">
+      {{ error }}
+    </ion-text>
+  </div>
+  <div *ngIf="success !== ''">
+    <ion-text color="success">
+      {{ success }}
+    </ion-text>
   </div>
   <div>
-    <!-- <ion-label>Password</ion-label> -->
-    <ion-input type="password" placeholder="Enter password"></ion-input>
+    <ion-label>Email</ion-label>
+    <ion-input type="text" placeholder="Enter Email" [(ngModel)]="email"></ion-input>
   </div>
-  <ion-button role="button">Login</ion-button>
+  <div>
+    <ion-label>Password</ion-label>
+    <ion-input type="password" placeholder="Enter password" [(ngModel)]="password"></ion-input>
+  </div>
+  <ion-button (click)="loginUser()" role="button">Login</ion-button>
   <ion-text role="link" (click)="navigateToRegister()">Not Register ?</ion-text>
 </ion-content>

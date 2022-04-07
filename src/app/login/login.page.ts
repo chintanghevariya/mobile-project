@@ -11,6 +11,8 @@ export class LoginPage implements OnInit {
 
   email: string = "";
   password: string = "";
+  error: string = "";
+  success: string = "";
 
   constructor(
     private router: Router,
@@ -24,12 +26,19 @@ export class LoginPage implements OnInit {
     this.router.navigate(["/register"])
   }
 
-  async loginUser() {
+  loginUser() {
     const { email, password } = this;
     this
       .authService
       .loginUser(email, password)
-      .then(console.log);
+      .then(() => {
+        this.success = "Logged in";
+        this.error = "";
+      })
+      .catch(err => {
+        this.error = err;
+        this.success = ""
+      });
   }
 
 }
