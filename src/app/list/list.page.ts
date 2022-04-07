@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../services/restaurant/restaurant.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
 
-  constructor() { }
+  allRestaurant : any = []
+  constructor(private RestService : RestaurantService) { }
 
   ngOnInit() {
+    this.loader()
   }
-
+   async loader(){
+     this.allRestaurant = await this.RestService.getAllRestaurants()
+   }
 }
