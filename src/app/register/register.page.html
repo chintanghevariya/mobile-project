@@ -5,8 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-input type="text" placeholder="Enter Username"></ion-input>
-  <ion-input type="password" placeholder="Enter password"></ion-input>
-  <ion-button role="button">Login</ion-button>
-  <ion-text role="link" (click)="navigateToRegister()">Not Register ?</ion-text>
+  <ion-input type="text" placeholder="Enter First Name" [(ngModel)]="firstName"></ion-input>
+  <ion-input type="text" placeholder="Enter Last Name" [(ngModel)]="lastName"></ion-input>
+  <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password"></ion-input>
+  <ion-input type="text" placeholder="Enter Email Id" [(ngModel)]="email"></ion-input>
+  <ion-button role="button">Register</ion-button>
 </ion-content>
