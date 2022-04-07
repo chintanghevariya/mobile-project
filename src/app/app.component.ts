@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     await this.storage.set("users", []);
+    await this.storage.set("restaurants", []);
   }
 
 }
