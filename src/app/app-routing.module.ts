@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'view-restaurant',
     loadChildren: () => import('./view-restaurant/view-restaurant.module').then( m => m.ViewRestaurantPageModule)
+  },
+  {
+    path: 'edit-restuarant',
+    loadChildren: () => import('./edit-restuarant/edit-restuarant.module').then( m => m.EditRestuarantPageModule)
   }
 ];
 

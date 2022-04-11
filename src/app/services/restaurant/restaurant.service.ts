@@ -41,11 +41,11 @@ export class RestaurantService {
   }
 
   public async editRestaurant(id: number, details: {
-    restaurantName: string,
-    description: string,
-    tags: string[],
-    geo: { lat: number, lng: number },
-    address: string 
+    restaurantName: any,
+    description: any,
+    tags: any[],
+    geo: { lat: any, lng: any },
+    address: any 
   }) {
     const restaurants = await this.getAllRestaurants();
     const restaurantIndex = restaurants.findIndex(restaurant => restaurant.id === id);

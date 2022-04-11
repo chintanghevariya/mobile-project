@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-restaurant',
   templateUrl: './view-restaurant.page.html',
@@ -9,33 +9,38 @@ import { RestaurantService } from '../services/restaurant/restaurant.service';
 export class ViewRestaurantPage implements OnInit {
 
   edit:Boolean = false
-  restaurantList : any = []
   name : String = ''
   description : String = ''
-  address:string
-  location: any = {}
+  geo: any = {
+    lat: 1,
+    lng: 1
+  };
+  address : String = ''
   tag : String = ''
   rating:Number = 3
-  temp:any
-  constructor(private RestService : RestaurantService){ 
+  restaurant:any={}
+
+  constructor(private RestService : RestaurantService,
+              private router :Router){ 
 
   }
 
   url = new URLSearchParams(window.location.search)
   restaurantId = Number(this.url.get('id'))
   async ngOnInit(){
-    this.restaurantList = await this.RestService.getRestaurantById(this.restaurantId)
-    console.log(this.restaurantList);
-    
-    this.name = this.restaurantList.restaurantName
-    this.address = this.restaurantList.address
-    this.description = this.restaurantList.description
+    this.restaurant = await this.RestService.getRestaurantById(this.restaurantId)
+    this.name = this.restaurant.restaurantName
+    this.address = this.restaurant.address
+    this.description = this.restaurant.description
+    this.geo = this.restaurant.geo;
   }
 
   goToLocation(){
 
   }
-
+  navigateToEditRestaurant(id:any){
+    this.router.navigateByUrl(`/edit-restuarant?id=${id}`)
+  }
   handleSave(){
 
     // this.RestService.editRestaurant(this.restaurantId, )
