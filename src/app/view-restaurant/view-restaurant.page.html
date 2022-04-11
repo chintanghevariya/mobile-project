@@ -12,7 +12,14 @@
   
   
   <div id="container">
-    <img src="http://www.drandsirrentals.com/news/wp-content/uploads/2017/10/dining.jpg" width="150" height="100" itemprop="image">
+    <google-map
+    height="300px"
+    width="100%"
+    [center]="geo">
+      <map-marker
+      [position]="geo"
+      [title]="name"></map-marker>
+    </google-map>
     <br/>
   </div>
   <div *ngIf="!edit">

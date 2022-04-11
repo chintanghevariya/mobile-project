@@ -12,6 +12,7 @@ export class ViewRestaurantPage implements OnInit {
   restaurantList : any = []
   name : String = ''
   description : String = ''
+  geo: any = {};
   street : String = ''
   zipCode : String = ''
   city : String = ''
@@ -32,6 +33,7 @@ export class ViewRestaurantPage implements OnInit {
     this.city = this.temp.city
     this.description = this.temp.description
     this.zipCode = this.temp.zipCode
+    this.geo = this.temp.geo;
   }
 
   goToLocation(){
