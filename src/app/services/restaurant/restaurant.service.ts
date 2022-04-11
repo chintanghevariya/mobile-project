@@ -38,6 +38,7 @@ export class RestaurantService {
 
   public async getRestaurantById(id: number) {
     const restaurants = await this.getAllRestaurants();
+
     return restaurants.find(restaurant => restaurant.id === id);
   }
 

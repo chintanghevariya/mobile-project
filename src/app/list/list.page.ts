@@ -26,7 +26,7 @@ export class ListPage implements OnInit {
     this.router.navigateByUrl('/add-restaurant')
   }
 
-  navigateToViewRestaurant(){
-    this.router.navigateByUrl('view-restaurant')
+  navigateToViewRestaurant(id:any){
+    this.router.navigateByUrl(`/view-restaurant?id=${id}`)
   }
 }
