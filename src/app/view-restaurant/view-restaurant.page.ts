@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewRestaurantPage implements OnInit {
 
-  constructor() { }
+  edit:Boolean = false
+  restaurantList : any = []
+  name : String
+  description : String
+  address : String 
+  zipcode : String
+  city : String
+  tag : String
+  rating:Number = 3
+
+  constructor(){ 
+
+  }
 
   ngOnInit() {
+  }
+
+  goToLocation(){
+
+  }
+
+  handleSave(){
+
   }
 
 }

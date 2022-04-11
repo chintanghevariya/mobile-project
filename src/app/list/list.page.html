@@ -12,7 +12,9 @@
   </div>
   <ion-list *ngFor="let item of allRestaurant">
     <ion-item>
-      <ion-label>{{item.restaurantName}}</ion-label>
+      <ion-label>{{item.id}} - {{item.restaurantName}}</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-text role="link" (click)="navigateToAddResturant()">Add Resturant?</ion-text>
 </ion-content>

@@ -1,22 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Details</ion-title>
+    <ion-title>Details</ion-title>
+    <ion-toggle [(ngModel)]="edit"></ion-toggle>
   </ion-toolbar>
+  
 </ion-header>
 
+
 <ion-content>
+  
+  
   <div id="container">
     <img src="http://www.drandsirrentals.com/news/wp-content/uploads/2017/10/dining.jpg" width="150" height="100" itemprop="image">
-    <ionic-rating-component #rating
-    activeIcon = "ios-star"
-    defaultIcon = "ios-star-outline"
-    activeColor = "#488aff" 
-    defaultColor = "#f4f4f4"
-    readonly="false"
-    rating="3"
-    fontSize = "32px"
-    (ratingChanged)="onRatingChange($event)">
-    </ionic-rating-component>
+    <br/>
+  </div>
+  <div *ngIf="!edit">
+    <div id="container"> 
+      <ion-text >Review</ion-text>
+      <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
+    </div>
+    <div class="content" *ngFor="let item of restaurantList">
+        <ion-text>Name : {{item.name}}</ion-text><br/>
+        <ion-text>Address : {{item.address}}</ion-text><br/>
+        <ion-text>Zip Code : {{item.zipcode}}</ion-text><br/>
+        <ion-text>City : {{item.city}}</ion-text><br/>
+        <ion-text>Description : {{item.description}}</ion-text><br/>
+        <ion-text> Tag : {{item.tag}} </ion-text><br/><br/>
+        <ion-button (click)="goToLocation()">Get Direction</ion-button>
+    </div>
+  </div>
+  <div *ngIf="edit">
+    <div id="container"> 
+      <ion-text >Review</ion-text>
+      <ion-range min="1" max="5" value={{rating}} color="primary"></ion-range>
+    </div>
+    <div class="content">
+        <ion-input [(ngModel)]="name">Name : {{name}}</ion-input><br/>
+        <ion-input [(ngModel)]="address">Address : {{address}}</ion-input><br/>
+        <ion-input [(ngModel)]="zipcode">Zip Code : {{zipcode}}</ion-input><br/>
+        <ion-input [(ngModel)]="city">Zip Code : {{city}}</ion-input><br/>
+        <ion-input [(ngModel)]="description">Description : {{description}}</ion-input><br/>
+        <ion-input [(ngModel)]="tag"> Tag : </ion-input><br/>
+        <ion-button (click)="handleSave()">Save</ion-button>
+    </div>
   </div>
 
+  <div class="content">
+
+  </div>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +7,11 @@ import { Storage } from '@ionic/storage-angular';
 export class AuthService {
 
   constructor(
-    private storage: Storage
   ) { }
 
   public async loginUser(email: string, password: string): Promise<any> {
-    const allUsers = await this.storage.get("users");
+    const temp = await Storage.get({key:"users"});
+    let allUsers = temp.value?JSON.parse(temp.value):[]
     const user = allUsers.find(user => user.email === email);
     if (user === undefined) {
       throw "Email is incorrect";
@@ -26,7 +26,8 @@ export class AuthService {
     email: string, password: string,
     firstName: string, lastName: string
   ): Promise<any> {
-    let allUsers = await this.storage.get("users");
+    let temp = await Storage.get({key:"users"});
+    let allUsers = temp.value ? JSON.parse(temp.value) : []
     if (allUsers === null || allUsers === undefined) {
       allUsers = [];
     }
@@ -40,7 +41,7 @@ export class AuthService {
     allUsers.push({
       email, password, firstName, lastName
     });
-    await this.storage.set("users", allUsers);
+    await Storage.set({key:"users", value:JSON.stringify(allUsers)});
     return true;
   }
 
