@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="edit">Edit Restaurant</ion-title>
+    <ion-title *ngIf="edit">Edit RestaurestaurantList</ion-title>
     <ion-title *ngIf="!edit">View Restaurant</ion-title>
     <ion-toggle [(ngModel)]="edit"></ion-toggle>
   </ion-toolbar>
@@ -20,13 +20,11 @@
       <ion-text >Review</ion-text>
       <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
     </div>
-    <div class="content" *ngFor="let item of restaurantList">
-        <ion-text>Name : {{item.restaurantName}}</ion-text><br/>
-        <ion-text>Street : {{item.street}}</ion-text><br/>
-        <ion-text>Zip Code : {{item.zipCode}}</ion-text><br/>
-        <ion-text>City : {{item.city}}</ion-text><br/>
-        <ion-text>Description : {{item.description}}</ion-text><br/>
-        <ion-text> Tag : {{item.tag}} </ion-text><br/><br/>
+    <div class="content">
+        <ion-text>Name : {{restaurantList.restaurantName}}</ion-text><br/>
+        <ion-text>Address : {{restaurantList.address}}</ion-text><br/>
+        <ion-text>Description : {{restaurantList.description}}</ion-text><br/>
+        <ion-text>Tag : {{restaurantList.tag}} </ion-text><br/><br/>
         <ion-button (click)="goToLocation()">Get Direction</ion-button>
     </div>
   </div>

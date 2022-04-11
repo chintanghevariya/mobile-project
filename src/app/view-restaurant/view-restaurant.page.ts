@@ -12,9 +12,8 @@ export class ViewRestaurantPage implements OnInit {
   restaurantList : any = []
   name : String = ''
   description : String = ''
-  street : String = ''
-  zipCode : String = ''
-  city : String = ''
+  address:string
+  location: any = {}
   tag : String = ''
   rating:Number = 3
   temp:any
@@ -25,13 +24,12 @@ export class ViewRestaurantPage implements OnInit {
   url = new URLSearchParams(window.location.search)
   restaurantId = Number(this.url.get('id'))
   async ngOnInit(){
-    this.temp = await this.RestService.getRestaurantById(this.restaurantId)
-    this.restaurantList.push(this.temp)
-    this.name = this.temp.restaurantName
-    this.street = this.temp.street
-    this.city = this.temp.city
-    this.description = this.temp.description
-    this.zipCode = this.temp.zipCode
+    this.restaurantList = await this.RestService.getRestaurantById(this.restaurantId)
+    console.log(this.restaurantList);
+    
+    this.name = this.restaurantList.restaurantName
+    this.address = this.restaurantList.address
+    this.description = this.restaurantList.description
   }
 
   goToLocation(){
@@ -39,7 +37,7 @@ export class ViewRestaurantPage implements OnInit {
   }
 
   handleSave(){
-    
+
     // this.RestService.editRestaurant(this.restaurantId, )
   }
 
