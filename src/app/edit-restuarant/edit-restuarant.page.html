@@ -48,7 +48,8 @@
           <ion-text role='link'(click)="toggleSelectLocationModel()">change address ?</ion-text>
           <ion-input [(ngModel)]="description">Description : </ion-input><br/>
           <ion-button (click)="handleSave()">Save</ion-button>
-          <ion-button (click)="goBack()">Cancel</ion-button>
+          <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
+
       </div>
     </div>
   </ion-content>

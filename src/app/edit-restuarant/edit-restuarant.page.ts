@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MapService } from '../services/map/map.service';
 import { Router } from '@angular/router';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
-import { Location } from '@angular/common'
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-edit-restuarant',
@@ -26,7 +26,7 @@ export class EditRestuarantPage implements OnInit {
   constructor(private RestService:RestaurantService,
               private router :Router,
               private mapService:MapService,
-              private loc: Location) { }
+              private appComponent: AppComponent) { }
   
   async ngOnInit() {
     this.restaurant = await this.RestService.getRestaurantById(this.restaurantId)
@@ -71,9 +71,9 @@ export class EditRestuarantPage implements OnInit {
         this.success = ""
       });
   }
-  goBack():void{
-    // this.router.navigateByUrl('/view-restaurant')
-    this.loc.back()
-  }
+  // goBack():void{
+  //   // this.router.navigateByUrl('/view-restaurant')
+  //   this.appComponent.goBack()
+  // }
 
 }

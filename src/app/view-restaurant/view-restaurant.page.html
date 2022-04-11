@@ -27,7 +27,8 @@
         <ion-text>Description : {{restaurant.description}}</ion-text><br/>
         <ion-text>Tag : {{restaurant.tag}} </ion-text><br/><br/>
         <ion-button (click)="goToLocation()">Get Direction</ion-button>
-        <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
+        <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> <br/>         
+        <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
     </div>
   </div>
 </ion-content>

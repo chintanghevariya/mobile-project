@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-view-restaurant',
   templateUrl: './view-restaurant.page.html',
@@ -21,7 +22,8 @@ export class ViewRestaurantPage implements OnInit {
   restaurant:any={}
 
   constructor(private RestService : RestaurantService,
-              private router :Router){ 
+              private router :Router,
+              private appComponent:AppComponent){ 
 
   }
 
