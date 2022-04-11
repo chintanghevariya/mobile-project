@@ -14,9 +14,7 @@ export class RestaurantService {
     description: string,
     tags: string[],
     geo: { lat: number, lng: number },
-    city:string,
-    zipCode:string,
-    street:string
+    address: string
   ) {
     const temp = await Storage.get({key:"restaurants"});
     let allRestaurants = temp.value?JSON.parse(temp.value):[]
@@ -26,7 +24,7 @@ export class RestaurantService {
     }
     const id = allRestaurants.length + 1;
     allRestaurants.push({
-      id, restaurantName, description, tags, geo, city, zipCode, street
+      id, restaurantName, description, tags, geo, address
     });
     await Storage.set({key:"restaurants",value: JSON.stringify(allRestaurants)});
   }
