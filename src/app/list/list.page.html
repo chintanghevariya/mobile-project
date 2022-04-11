@@ -6,12 +6,15 @@
 
 <ion-content>
   <h1>Test</h1>
+  <ion-button (click)="navigateToAddRestaurant()">Add restaurant</ion-button>
   <div *ngIf="allRestaurant.length === 0">
-    <ion-text>No restaurants lol!</ion-text>
+    <ion-text>No restaurants!</ion-text>
   </div>
   <ion-list *ngFor="let item of allRestaurant">
     <ion-item>
-      <ion-label>{{item.restaurantName}}</ion-label>
+      <ion-label>{{item.id}} - {{item.restaurantName}}</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-text role="link" (click)="navigateToAddResturant()">Add Resturant?</ion-text>
 </ion-content>
