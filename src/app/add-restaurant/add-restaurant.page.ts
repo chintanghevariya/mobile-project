@@ -42,4 +42,8 @@ export class AddRestaurantPage implements OnInit {
         this.success = ""
       });
   }
+
+  cancel(){
+    this.router.navigateByUrl('/list')
+  }
 }
