@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./add-restaurant/add-restaurant.module').then( m => m.AddRestaurantPageModule)
   },
   {
+    path: 'select-location',
+    loadChildren: () => import('./select-location/select-location.module').then( m => m.SelectLocationPageModule)
+  },
+  {
     path: 'view-restaurant',
     loadChildren: () => import('./view-restaurant/view-restaurant.module').then( m => m.ViewRestaurantPageModule)
   }

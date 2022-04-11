@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>select-location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-label>
+      Enter address
+    </ion-label>
+    <ion-input [ngModel]="address" (ngModelChange)="handleLocations($event)"></ion-input>
+  </div>
+  <ion-list *ngFor="let location of locations">
+    <ion-item button (click)="onSelect(location)">
+      {{ location.description }}
+    </ion-item>
+  </ion-list>
+</ion-content>

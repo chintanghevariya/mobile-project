@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 const AUTOCOMPLETE_API_URL = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 const PLACE_DETAIL_API_URL =
     "https://maps.googleapis.com/maps/api/place/details/json";
-const token = "AIzaSyAD3HNAwZ_A5ShqokH6RP-B8Nn5S2TTlkc";
+const token = "AIzaSyDaoWjKXa_gVe58W5pX8-JPcuxKT9nyce0";
 
 @Injectable({
   providedIn: 'root'
@@ -15,45 +16,17 @@ export class MapService {
     private httpClient: HttpClient
   ) { }
 
-  public async getLocationsByName(name: string): Promise<any> {
-    try {
-      if (name === undefined || name === null) {
-          return [null, null];
-      }
-      if (typeof name !== "string") {
-          throw new Error("Name parameter must be a string");
-      }
-      if (name.trim() === "") {
-          return [null, null];
-      }
-      if (name.length < 5) {
-          return [null, null];
-      }
-      const request = await this.httpClient.get(
-          AUTOCOMPLETE_API_URL + `?input=${name}&key=${token}`
-      );
-      return [request, null];
-    } catch (e) {
-        return [null, e.message];
+  public getLocationsByName(name: string): Observable<any> {
+    if (name.length < 3) {
+      return of({});
     }
+    const url = `http://localhost:4000/name/${name}`;
+    return this.httpClient.get<any>(url);
   }
 
-  public async getLocationDetails(locationId) {
-    try {
-      if (locationId === undefined || locationId === null) {
-          return [null, null];
-      }
-      if (locationId.trim() === "") {
-          return [null, null];
-      }
-      const request = await this.httpClient.get(
-          PLACE_DETAIL_API_URL + `?place_id=${locationId}&key=${token}`
-      );
-      return [request, null];
-    } catch (err) {
-      console.error(err);
-      return [null, err.message];
-    }
-}
+  public getLocationDetails(locationId: string): Observable<any> {
+    const url = `http://localhost:4000/place/${locationId}`
+    return this.httpClient.get<any>(url);
+  }
 
 }
