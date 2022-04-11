@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'add-restaurant',
+    redirectTo: 'select-location',
     pathMatch: 'full'
   },
   {
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'add-restaurant',
     loadChildren: () => import('./add-restaurant/add-restaurant.module').then( m => m.AddRestaurantPageModule)
+  },
+  {
+    path: 'select-location',
+    loadChildren: () => import('./select-location/select-location.module').then( m => m.SelectLocationPageModule)
   }
 ];
 
