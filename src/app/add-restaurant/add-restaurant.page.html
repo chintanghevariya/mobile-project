@@ -4,8 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
+  <ion-modal
+    [isOpen]="isSelectLocationModalOpen"
+    [swipeToClose]="true">
+    <ng-template>
+      <app-select-location
+      [onSelect]="setLocation"
+      [toggleModal]="toggleSelectLocationModel"
+      ></app-select-location>
+    </ng-template>
+  </ion-modal>
   <div *ngIf="error !== ''">
     <ion-text color="danger">
       {{ error }}
@@ -21,10 +30,13 @@
     <ion-input type="text" placeholder="Enter name of restaurant" [(ngModel)]="name"></ion-input>
   </div>
   <div>
-    <ion-label>address</ion-label>
-    <ion-input type="text" placeholder="Enter street" [(ngModel)]="street"></ion-input>
-    <ion-input type="text" placeholder="Enter city" [(ngModel)]="city"></ion-input>
-    <ion-input type="text" placeholder="Enter zipcode" [(ngModel)]="zipCode"></ion-input>
+    <div>
+      <ion-label>address</ion-label>
+      <ion-button (click)="toggleSelectLocationModel()">
+        Select Location
+      </ion-button>
+    </div>
+    {{ location.description }}
   </div>
   <div>
     <ion-label>Description</ion-label>

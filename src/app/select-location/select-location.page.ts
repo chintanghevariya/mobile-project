@@ -9,6 +9,7 @@ import { MapService } from '../services/map/map.service';
 export class SelectLocationPage implements OnInit {
 
   @Input() onSelect: (location: any) => void;
+  @Input() toggleModal: () => void;
 
   address: string = "";
   locations: any[] = [];

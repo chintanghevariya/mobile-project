@@ -1,10 +1,13 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>select-location</ion-title>
+    <ion-title>Select location</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleModal()">Close</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <div>
     <ion-label>
       Enter address

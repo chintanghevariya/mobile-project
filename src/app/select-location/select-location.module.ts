@@ -15,6 +15,9 @@ import { SelectLocationPage } from './select-location.page';
     IonicModule,
     SelectLocationPageRoutingModule
   ],
+  exports: [
+    SelectLocationPage
+  ],
   declarations: [SelectLocationPage]
 })
 export class SelectLocationPageModule {}
