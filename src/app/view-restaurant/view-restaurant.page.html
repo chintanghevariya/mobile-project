@@ -4,31 +4,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> 
+<ion-content>
   <div id="container">
-    <google-map
-    height="300px"
-    width="100%"
-    [center]="geo">
-      <map-marker
-      [position]="geo"
-      [title]="name"></map-marker>
+    <google-map height="300px" width="100%" [center]="geo">
+      <map-marker [position]="geo" [title]="name"></map-marker>
     </google-map>
-    <br/>
+    <br />
   </div>
   <div>
-    <div id="container"> 
-      <ion-text >Review</ion-text>
+    <div id="container">
+      <ion-text>Review</ion-text>
       <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
     </div>
     <div class="content">
-        <ion-text>Name : {{restaurant.restaurantName}}</ion-text><br/>
-        <ion-text>Address : {{restaurant.address}}</ion-text><br/>
-        <ion-text>Description : {{restaurant.description}}</ion-text><br/>
-        <ion-text>Tag : {{restaurant.tag}} </ion-text><br/><br/>
-        <ion-button (click)="goToLocation()">Get Direction</ion-button>
-        <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> <br/>         
-        <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
+      <ion-text>Name : {{restaurant.restaurantName}}</ion-text><br />
+      <ion-text>Address : {{restaurant.address}}</ion-text><br />
+      <ion-text>Description : {{restaurant.description}}</ion-text><br />
+      <ion-text>Tag : {{restaurant.tags}} </ion-text><br /><br />
+      <ion-button (click)="goToLocation()">Get Direction</ion-button>
+      <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> <br />
+      <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
     </div>
   </div>
 </ion-content>

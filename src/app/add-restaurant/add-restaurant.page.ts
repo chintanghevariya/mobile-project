@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { env } from 'process';
 import { MapService } from '../services/map/map.service';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 @Component({
@@ -17,15 +18,17 @@ export class AddRestaurantPage implements OnInit {
 
   ngOnInit() {
   }
-  success:string=''
-  error:string=''
-  name:string=''
-  geo:{
-    lat:'',
-    lng:''
+  success: string = ''
+  error: string = ''
+  name: string = ''
+  currentTagValue: string = "";
+  geo: {
+    lat: '',
+    lng: ''
   }
-  description: string=''
-  tags:[]
+  description: string = ''
+  tags = []
+  destinations = [];
   location: any = {}
   isSelectLocationModalOpen: boolean = false;
 
@@ -38,7 +41,7 @@ export class AddRestaurantPage implements OnInit {
     this.isSelectLocationModalOpen = false;
   }
 
-  async addRestaurant(){
+  async addRestaurant() {
     const { place_id } = this.location;
     const locationDetails = await this.mapService.getLocationDetails(place_id).toPromise();
     const { lat, lng } = locationDetails.result.geometry.location;
@@ -62,7 +65,17 @@ export class AddRestaurantPage implements OnInit {
       });
   }
 
-  cancel(){
+  cancel() {
     this.router.navigateByUrl('/list')
+  }
+
+  addTag() {
+    const tagExists = this.tags.findIndex(tag => {
+      return tag.toLowerCase() === this.currentTagValue.toLowerCase();
+    }) > -1;
+    if (tagExists === false) {
+      this.tags.push(this.currentTagValue);
+      this.currentTagValue = ""
+    }
   }
 }
