@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'directions/:lat/:lng',
     loadChildren: () => import('./directions/directions.module').then( m => m.DirectionsPageModule)
+  },
+  {
+    path: 'edit-restuarant',
+    loadChildren: () => import('./edit-restuarant/edit-restuarant.module').then( m => m.EditRestuarantPageModule)
   }
 ];
 

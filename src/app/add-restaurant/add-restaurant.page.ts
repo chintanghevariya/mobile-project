@@ -20,9 +20,6 @@ export class AddRestaurantPage implements OnInit {
   success:string=''
   error:string=''
   name:string=''
-  street: string=''
-  city: string=''
-  zipCode: string=''
   geo:{
     lat:'',
     lng:''

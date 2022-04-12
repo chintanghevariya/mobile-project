@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit-restuarant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-modal
+    [isOpen]="isSelectLocationModalOpen"
+    [swipeToClose]="true">
+    <ng-template>
+      <app-select-location
+      [onSelect]="setLocation"
+      [toggleModal]="toggleSelectLocationModel"
+      ></app-select-location>
+    </ng-template>
+  </ion-modal>
+  <div *ngIf="error !== ''">
+    <ion-text color="danger">
+      {{ error }}
+    </ion-text>
+  </div>
+  <div *ngIf="success !== ''">
+    <ion-text color="success">
+      {{ success }}
+    </ion-text>
+  </div>
+    <div id="container">
+      <google-map
+      height="300px"
+      width="100%"
+      [center]="geo">
+        <map-marker
+        [position]="geo"
+        [title]="name"></map-marker>
+      </google-map>
+      <br/>
+    </div>
+
+    <div>
+      <div id="container"> 
+        <ion-text >Review</ion-text>
+        <ion-range min="1" max="5" value={{rating}} color="primary"></ion-range>
+      </div>
+      <div class="content">
+          <ion-input [(ngModel)]="name">Name : </ion-input><br/>
+          <ion-input [(ngModel)]="address">Address : </ion-input>
+          <ion-text role='link'(click)="toggleSelectLocationModel()">change address ?</ion-text>
+          <ion-input [(ngModel)]="description">Description : </ion-input><br/>
+          <ion-button (click)="handleSave()">Save</ion-button>
+          <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
+
+      </div>
+    </div>
+  </ion-content>
+  

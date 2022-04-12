@@ -1,16 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="edit">Edit Restaurant</ion-title>
-    <ion-title *ngIf="!edit">View Restaurant</ion-title>
-    <ion-toggle [(ngModel)]="edit"></ion-toggle>
+    <ion-title>View Restaurant</ion-title>
   </ion-toolbar>
-  
 </ion-header>
 
-
-<ion-content>
-  
-  
+<ion-content> 
   <div id="container">
     <google-map
     height="300px"
@@ -22,37 +16,19 @@
     </google-map>
     <br/>
   </div>
-  <div *ngIf="!edit">
+  <div>
     <div id="container"> 
       <ion-text >Review</ion-text>
       <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
     </div>
-    <div class="content" *ngFor="let item of restaurantList">
-        <ion-text>Name : {{item.restaurantName}}</ion-text><br/>
-        <ion-text>Street : {{item.street}}</ion-text><br/>
-        <ion-text>Zip Code : {{item.zipCode}}</ion-text><br/>
-        <ion-text>City : {{item.city}}</ion-text><br/>
-        <ion-text>Description : {{item.description}}</ion-text><br/>
-        <ion-text> Tag : {{item.tag}} </ion-text><br/><br/>
+    <div class="content">
+        <ion-text>Name : {{restaurant.restaurantName}}</ion-text><br/>
+        <ion-text>Address : {{restaurant.address}}</ion-text><br/>
+        <ion-text>Description : {{restaurant.description}}</ion-text><br/>
+        <ion-text>Tag : {{restaurant.tag}} </ion-text><br/><br/>
         <ion-button (click)="goToLocation()">Get Direction</ion-button>
+        <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> <br/>         
+        <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
     </div>
-  </div>
-  <div *ngIf="edit">
-    <div id="container"> 
-      <ion-text >Review</ion-text>
-      <ion-range min="1" max="5" value={{rating}} color="primary"></ion-range>
-    </div>
-    <div class="content" *ngFor="let item of restaurantList">
-        <ion-input [(ngModel)]="name" value="item.restaurantName">Name : </ion-input><br/>
-        <ion-input [(ngModel)]="street" value="item.street">Address : </ion-input><br/>
-        <ion-input [(ngModel)]="zipCode">Zip Code : </ion-input><br/>
-        <ion-input [(ngModel)]="city">City : </ion-input><br/>
-        <ion-input [(ngModel)]="description">Description : </ion-input><br/>
-        <ion-button (click)="handleSave()">Save</ion-button>
-    </div>
-  </div>
-
-  <div class="content">
-
   </div>
 </ion-content>
