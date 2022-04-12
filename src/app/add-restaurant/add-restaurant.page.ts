@@ -78,4 +78,8 @@ export class AddRestaurantPage implements OnInit {
       this.currentTagValue = ""
     }
   }
+  removeTag(tag:any){
+    const index = this.tags.indexOf(tag)
+    this.tags.splice(index,1)
+  }
 }

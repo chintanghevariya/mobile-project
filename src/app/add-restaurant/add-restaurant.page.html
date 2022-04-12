@@ -47,9 +47,11 @@
       </ion-button>
     </div>
     <div>
-      <button style="margin: 0 5px; padding: 3px;" *ngFor="let tag of tags">
+      <ion-label style="margin: 0 5px; padding: 3px; justify-self: center;" *ngFor="let tag of tags">
         {{ tag }}
-      </button>
+          <ion-icon color="danger" (click)="removeTag(tag)"name="trash">
+          </ion-icon>
+      </ion-label>
     </div>
     <!-- <io`n-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input> -->
   </div>
