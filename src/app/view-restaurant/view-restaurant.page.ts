@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
-import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+
 @Component({
   selector: 'app-view-restaurant',
   templateUrl: './view-restaurant.page.html',
