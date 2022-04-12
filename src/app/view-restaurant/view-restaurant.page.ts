@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 
 @Component({
@@ -19,7 +20,10 @@ export class ViewRestaurantPage implements OnInit {
   tag : String = ''
   rating:Number = 3
   temp:any
-  constructor(private RestService : RestaurantService){ 
+  constructor(
+    private RestService : RestaurantService,
+    private router: Router
+  ){ 
 
   }
 
@@ -37,7 +41,7 @@ export class ViewRestaurantPage implements OnInit {
   }
 
   goToLocation(){
-
+    this.router.navigate([`/directions/${this.geo.lat}/${this.geo.lng}`])
   }
 
   handleSave(){

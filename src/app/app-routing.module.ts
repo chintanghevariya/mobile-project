@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'view-restaurant',
     loadChildren: () => import('./view-restaurant/view-restaurant.module').then( m => m.ViewRestaurantPageModule)
+  },
+  {
+    path: 'directions/:lat/:lng',
+    loadChildren: () => import('./directions/directions.module').then( m => m.DirectionsPageModule)
   }
 ];
 

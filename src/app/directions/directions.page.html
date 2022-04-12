@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>directions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <google-map
+    *ngIf="showMap"
+    height="100%"
+    width="100%"
+    [center]="origin">
+    <map-directions-renderer
+      *ngIf="directions !== undefined && directions !== null"
+      [directions]="directions"></map-directions-renderer>
+  </google-map>
+</ion-content>
