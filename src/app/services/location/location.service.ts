@@ -12,6 +12,7 @@ export class LocationService {
     async askToTurnOnGPS(): Promise<boolean> {
         return await new Promise((resolve, reject) => {
             LocationAccuracy.canRequest().then((canRequest: boolean) => {
+                console.log(canRequest, "Can Request");
                 if (canRequest) {
                     LocationAccuracy.request(LocationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
                         () => {
@@ -20,7 +21,7 @@ export class LocationService {
                         error => { resolve(false); }
                     );
                 }
-                else { resolve(false); }
+                else { resolve(true); }
             });
         })
     }

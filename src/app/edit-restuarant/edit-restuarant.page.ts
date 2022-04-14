@@ -38,6 +38,7 @@ export class EditRestuarantPage implements OnInit {
     this.description = this.restaurant.description
     this.tags = this.restaurant.tags;
     this.geo = this.restaurant.geo;
+    console.log(this.geo);
   }
   location: any = {}
   isSelectLocationModalOpen: boolean = false;

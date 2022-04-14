@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>mobile_project</string>
+	<string>mobile_project</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -50,5 +50,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need location to run</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need location to run</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need location to run</string>
 </dict>
 </plist>
