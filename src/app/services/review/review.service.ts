@@ -31,8 +31,6 @@ export class ReviewService {
   ){
     const {value:allReviewsString} = await Storage.get({key:'reviews'})
     const allReviews = allReviewsString ? JSON.parse(allReviewsString) : [];
-    console.log(allReviews);
-    
     return (allReviews.filter(reviews => reviews.restaurantId === restaurantId))
   }
 
