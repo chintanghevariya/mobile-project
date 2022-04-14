@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapService } from '../services/map/map.service';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
+
 @Component({
   selector: 'app-add-restaurant',
   templateUrl: './add-restaurant.page.html',

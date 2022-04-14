@@ -12,7 +12,21 @@
     </div>
     <div>
       <ion-label>Tags</ion-label>
-      <ion-input placeholder="Enter here..."></ion-input>
+      <div style="display: flex;">
+        <ion-input [(ngModel)]="currentTagValue" style="width: 90%" placeholder="Enter here.."></ion-input>
+        <ion-button (click)="addTag()" size="small">
+          <ion-icon name="add">
+          </ion-icon>
+        </ion-button>
+      </div>
+      <div>
+        <ion-label style="margin: 0 5px; padding: 3px; justify-self: center;" *ngFor="let tag of tags">
+            {{ tag }}
+            <ion-icon color="danger" (click)="removeTag(tag)"name="trash">
+            </ion-icon>
+        </ion-label>
+      </div>
+      <!-- <io`n-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input> -->
     </div>
     <ion-button (click)="search()" expand="block">
       Search

@@ -19,8 +19,9 @@ export class ViewRestaurantPage implements OnInit {
   };
   address : String = ''
   tag : String = ''
-  rating:Number = 3
+  rating: number = 3;
   restaurant:any={}
+  comment: string = "";
 
   constructor(private RestService : RestaurantService,
               private router :Router,
@@ -36,6 +37,10 @@ export class ViewRestaurantPage implements OnInit {
     this.address = this.restaurant.address
     this.description = this.restaurant.description
     this.geo = this.restaurant.geo;
+  }
+
+  handleRatingChange(range) {
+    debugger;
   }
 
   goToLocation(){
