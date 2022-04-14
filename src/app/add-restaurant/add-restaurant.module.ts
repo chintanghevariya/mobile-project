@@ -8,6 +8,7 @@ import { AddRestaurantPageRoutingModule } from './add-restaurant-routing.module'
 
 import { AddRestaurantPage } from './add-restaurant.page';
 import { SelectLocationPageModule } from '../select-location/select-location.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { SelectLocationPageModule } from '../select-location/select-location.mod
     FormsModule,
     IonicModule,
     AddRestaurantPageRoutingModule,
+    IonicSelectableModule,
     SelectLocationPageModule
   ],
   declarations: [AddRestaurantPage]
 })
-export class AddRestaurantPageModule {}
+export class AddRestaurantPageModule { }

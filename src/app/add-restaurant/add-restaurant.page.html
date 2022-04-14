@@ -5,14 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-modal
-    [isOpen]="isSelectLocationModalOpen"
-    [swipeToClose]="true">
+  <ion-modal [isOpen]="isSelectLocationModalOpen" [swipeToClose]="true">
     <ng-template>
-      <app-select-location
-      [onSelect]="setLocation"
-      [toggleModal]="toggleSelectLocationModel"
-      ></app-select-location>
+      <app-select-location [onSelect]="setLocation" [toggleModal]="toggleSelectLocationModel"></app-select-location>
     </ng-template>
   </ion-modal>
   <div *ngIf="error !== ''">
@@ -43,10 +38,23 @@
     <ion-textarea type="text" placeholder="Enter Description" [(ngModel)]="description"></ion-textarea>
   </div>
   <div>
-    <ion-label>tags</ion-label>
-    <ion-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input>
+    <ion-label>Tags</ion-label>
+    <div style="display: flex;">
+      <ion-input [(ngModel)]="currentTagValue" style="width: 90%" placeholder="Enter here.."></ion-input>
+      <ion-button (click)="addTag()" size="small">
+        <ion-icon name="add">
+        </ion-icon>
+      </ion-button>
+    </div>
+    <div>
+      <ion-label style="margin: 0 5px; padding: 3px; justify-self: center;" *ngFor="let tag of tags">
+        {{ tag }}
+          <ion-icon color="danger" (click)="removeTag(tag)"name="trash">
+          </ion-icon>
+      </ion-label>
+    </div>
+    <!-- <io`n-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input> -->
   </div>
-  <ion-button (click)="addRestaurant()" style="width: 100%"  role="button">Add</ion-button>
+  <ion-button (click)="addRestaurant()" style="width: 100%" role="button">Add</ion-button>
   <ion-button color="danger" style="width: 100%" (click)="cancel()" role="button">Cancel</ion-button>
 </ion-content>
-
