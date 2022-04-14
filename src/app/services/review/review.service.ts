@@ -10,20 +10,30 @@ export class ReviewService {
 
   public async addReview(
     restaurantId: number,
-    userId: number,
+    userName: string,
     rating: number,
     comment: string
   ) {
     const { value: allReviewsString } = await Storage.get({ key: "reviews" });
-    const allReviews = JSON.parse(allReviewsString);
+    const allReviews = allReviewsString?JSON.parse(allReviewsString):[];
     const reviewId = allReviews.length + 1;
     allReviews.push({
-      reviewId, restaurantId, userId, rating, comment
+      reviewId, restaurantId, userName, rating, comment
     });
     await Storage.set({
       key: "reviews",
       value: JSON.stringify(allReviews)
     });
+  }
+
+  public async allReview(
+    restaurantId:number
+  ){
+    const {value:allReviewsString} = await Storage.get({key:'reviews'})
+    const allReviews = allReviewsString ? JSON.parse(allReviewsString) : [];
+    console.log(allReviews);
+    
+    return (allReviews.filter(reviews => reviews.restaurantId === restaurantId))
   }
 
   public async removeReview(

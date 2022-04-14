@@ -31,9 +31,10 @@ export class LoginPage implements OnInit {
     this
       .authService
       .loginUser(email, password)
-      .then(() => {
+      .then((data) => {
         this.success = "Logged in";
         this.error = "";
+        localStorage.setItem('userName', data.firstName)
         this.router.navigateByUrl('/list')
       })
       .catch(err => {

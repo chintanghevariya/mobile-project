@@ -11,16 +11,8 @@
     </google-map>
     <br />
   </div>
+        <ion-button expand="block" color="success" (click)="goToLocation()">Get Direction</ion-button>
   <div>
-    <div id="container">
-      <ion-text>Review</ion-text>
-      <ion-range snaps min="1" max="5" step="1" [(ngModel)]="rating" color="primary">
-        <ion-icon slot="start" size="small" color="danger" name="sad-outline"></ion-icon>
-        <ion-icon slot="end" color="success" name="happy"></ion-icon>
-      </ion-range>
-      <ion-textarea [(ngModel)]="comment" placeholder="Enter comment here..."></ion-textarea>
-      <ion-button>Submit Review</ion-button>
-    </div>
     <div>
       <ion-card>
         <ion-card-header >
@@ -43,9 +35,22 @@
             {{restaurant.tag}}
           </ion-item>
       </ion-card>
-      <ion-button expand="block" color="success" (click)="goToLocation()" >Get Direction</ion-button>
+
       <ion-button expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
-      <ion-button class="button-large row" color="primary" (click)="appComponent.goBack()">Back</ion-button> 
+
+      <div id="container">
+        <ion-text>Review</ion-text>
+        <ion-range snaps min="1" max="5" step="1" [(ngModel)]="rating" color="primary">
+          <ion-icon slot="start" size="small" color="danger" name="sad-outline"></ion-icon>
+          <ion-icon slot="end" color="success" name="happy"></ion-icon>
+        </ion-range>
+        <ion-textarea [(ngModel)]="comment" placeholder="Enter comment here..."></ion-textarea>
+        <ion-button (click)="submitReview()">Submit Review</ion-button>
+      </div>
     </div> 
   </div>
+
+  <button (click)="getAllReview()">
+    getall
+  </button>
 </ion-content> 
