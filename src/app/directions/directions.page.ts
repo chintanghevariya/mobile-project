@@ -40,9 +40,11 @@ export class DirectionsPage implements OnInit {
 
   async getMyLocation() {
     const hasPermission = await this.locationService.checkGPSPermission();
+    console.log(hasPermission, "has permission");
     if (hasPermission) {
       if (Capacitor.isNativePlatform()) {
         const canUseGPS = await this.locationService.askToTurnOnGPS();
+        console.log(canUseGPS, "canUseGPS 1");
         this.postGPSPermission(canUseGPS);
       }
       else { this.postGPSPermission(true); }
@@ -52,6 +54,7 @@ export class DirectionsPage implements OnInit {
       if (permission === 'CAN_REQUEST' || permission === 'GOT_PERMISSION') {
         if (Capacitor.isNativePlatform()) {
           const canUseGPS = await this.locationService.askToTurnOnGPS();
+          console.log(canUseGPS, "canUseGPS 2");
           this.postGPSPermission(canUseGPS);
         }
         else { this.postGPSPermission(true); }
