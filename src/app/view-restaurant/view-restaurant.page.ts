@@ -21,11 +21,12 @@ export class ViewRestaurantPage implements OnInit {
   };
   address: String = ''
   tag: String = ''
+  tags: any = []
   rating: number = 3;
   restaurant: any = {}
   comment: string = "";
   userName = localStorage.getItem('userName')
-  allReviews :any
+  allReviews :any  = []
 
   constructor(private RestService: RestaurantService,
     private router: Router,
@@ -36,23 +37,38 @@ export class ViewRestaurantPage implements OnInit {
   }
   url = new URLSearchParams(window.location.search)
   restaurantId = Number(this.url.get('id'))
+
+  async ionViewDidEnter() {
+    await this.loader();
+  }
+
   async ngOnInit() {
+    await this.loader()
+  }
+
+  async loader() {
     this.restaurant = await this.RestService.getRestaurantById(this.restaurantId)
     this.name = this.restaurant.restaurantName
     this.address = this.restaurant.address
     this.description = this.restaurant.description
     this.geo = this.restaurant.geo;
+    this.tags = this.restaurant.tags;
+    this.getAllReview()
   }
 
   submitReview() {
     this.ReviewService
       .addReview(this.restaurantId, this.userName, this.rating, this.comment)
-      .then(async () => {
+      .then(async (review) => {
         const toast = await this.toastController.create({
           message: 'Your review has been added.',
-          duration: 2000
+          duration: 2000,
+          color: "success"
         });
         toast.present();
+        this.allReviews.push(review);
+        this.rating = 3;
+        this.comment = "";
       })
   }
 
@@ -60,8 +76,7 @@ export class ViewRestaurantPage implements OnInit {
     await this.ReviewService.allReview(this.restaurantId)
     .then((data)=>{
       this.allReviews = data
-      console.log(this.allReviews);
-      
+      console.log(this.allReviews);  
     })
   }
   goToLocation() {

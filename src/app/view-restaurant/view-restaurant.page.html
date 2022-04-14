@@ -15,8 +15,11 @@
   <div>
     <div>
       <ion-card>
-        <ion-card-header >
-          {{restaurant.restaurantName}}
+        <ion-card-header>
+          <ion-card-title>
+            {{restaurant.restaurantName}}
+          </ion-card-title>
+          
         </ion-card-header>
     
           <ion-item>
@@ -31,15 +34,16 @@
           </ion-item>
           <ion-item>
             <ion-icon name="pricetag-outline"></ion-icon>&nbsp;
-            <ion-label>Tag : </ion-label>
-            {{restaurant.tag}}
+            <ion-label>Tags : </ion-label>
+            {{restaurant.tags}}
           </ion-item>
       </ion-card>
 
       <ion-button expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
 
+      <br />
       <div id="container">
-        <ion-text>Review</ion-text>
+        <h3>Add Review</h3>
         <ion-range snaps min="1" max="5" step="1" [(ngModel)]="rating" color="primary">
           <ion-icon slot="start" size="small" color="danger" name="sad-outline"></ion-icon>
           <ion-icon slot="end" color="success" name="happy"></ion-icon>
@@ -47,10 +51,23 @@
         <ion-textarea [(ngModel)]="comment" placeholder="Enter comment here..."></ion-textarea>
         <ion-button (click)="submitReview()">Submit Review</ion-button>
       </div>
+      <div>
+        <h3 style="margin: 5px;">Reviews</h3>
+        <hr />
+        <ion-list *ngFor="let item of allReviews">
+          <ion-item>
+            <ion-label>
+              <div style="display: flex; justify-content: space-between; padding: 0 5px;">
+                <h2>{{ item.userName }}</h2>
+                <h4>Rating: {{ item.rating }}</h4>
+              </div>
+              <p style="padding: 0 5px;">
+                {{ item.comment }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
     </div> 
   </div>
-
-  <button (click)="getAllReview()">
-    getall
-  </button>
 </ion-content> 

@@ -28,12 +28,15 @@ export class EditRestuarantPage implements OnInit {
               private router :Router,
               private mapService:MapService,
               private appComponent: AppComponent) { }
+
+  
   
   async ngOnInit() {
     this.restaurant = await this.RestService.getRestaurantById(this.restaurantId)
     this.name = this.restaurant.restaurantName
     this.address = this.restaurant.address
     this.description = this.restaurant.description
+    this.tags = this.restaurant.tags;
     this.geo = this.restaurant.geo;
   }
   location: any = {}
@@ -66,16 +69,20 @@ export class EditRestuarantPage implements OnInit {
   }
 
   async handleSave(){
-    const { place_id } = this.location;
-    const locationDetails = await this.mapService.getLocationDetails(place_id).toPromise();
-    const { lat, lng } = locationDetails.result.geometry.location;
-    const geo = { lat, lng };
+    let geo = this.geo;
+    if (this.location.place_id) {
+      const { place_id } = this.location;
+      const locationDetails = await this.mapService.getLocationDetails(place_id).toPromise();
+      const { lat, lng } = locationDetails.result.geometry.location;
+      geo = { lat, lng };
+    }
+    debugger;
     const details = {
       restaurantName: this.name,
       description: this.description,
       tags: this.tags,
       geo: geo,
-      address: this.location.description
+      address: this.location.description || this.address
     }
     this.RestService
       .editRestaurant(this.restaurantId,details)

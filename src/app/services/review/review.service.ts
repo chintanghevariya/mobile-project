@@ -24,6 +24,9 @@ export class ReviewService {
       key: "reviews",
       value: JSON.stringify(allReviews)
     });
+    return {
+      reviewId, restaurantId, userName, rating, comment
+    }
   }
 
   public async allReview(
