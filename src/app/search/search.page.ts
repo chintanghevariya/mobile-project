@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SearchPage implements OnInit {
 
-  value: string;
+  value: string = "";
   restaurants: any;
   currentTagValue: string = "";
   tags = []
@@ -25,9 +25,8 @@ export class SearchPage implements OnInit {
   search() {
     this
       .restaurantService
-      .searchRestaurants(this.value)
+      .searchRestaurants(this.value, this.tags)
       .then(data => {
-        // debugger;
         this.restaurants = data;
         console.log(data);
       })
@@ -54,7 +53,7 @@ export class SearchPage implements OnInit {
       this.currentTagValue = ""
     }
   }
-  
+
   removeTag(tag:any){
     const index = this.tags.indexOf(tag)
     this.tags.splice(index,1)
