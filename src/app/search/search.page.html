@@ -40,6 +40,11 @@
       (click)='navigateToViewRestaurant(restaurant.id)'>view</button>
       <button 
       (click)='navigateToEditRestaurant(restaurant.id)'>Edit</button>
+      <button ion-item (click)='navigateToEditRestaurant(restaurant.id)'> 
+        <ion-icon name="edit" item-start></ion-icon>
+        Edit
+      </button>
+  
     </ion-item>
   </ion-list>
 </ion-content>
