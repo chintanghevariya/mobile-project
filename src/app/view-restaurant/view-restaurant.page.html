@@ -15,6 +15,8 @@
     <div id="container">
       <ion-text>Review</ion-text>
       <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
+      <ion-textarea [(ngModel)]="comment" placeholder="Enter comment here..."></ion-textarea>
+      <ion-button>Submit Review</ion-button>
     </div>
     <div class="content">
       <ion-text>Name : {{restaurant.restaurantName}}</ion-text><br />

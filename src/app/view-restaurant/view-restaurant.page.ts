@@ -21,6 +21,7 @@ export class ViewRestaurantPage implements OnInit {
   tag : String = ''
   rating:Number = 3
   restaurant:any={}
+  comment: string = "";
 
   constructor(private RestService : RestaurantService,
               private router :Router,
