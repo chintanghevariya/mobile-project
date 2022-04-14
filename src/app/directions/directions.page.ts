@@ -116,7 +116,6 @@ export class DirectionsPage implements OnInit {
       .route(request)
       .pipe(map(response => response.result))
       .subscribe(result => {
-        debugger;
         this.directions = result;
       })
   }
