@@ -63,10 +63,24 @@ export class ListPage implements OnInit {
           handler: () => {
             this.navigateToEditRestaurant(itemId);
           }
+        },
+        {
+          text: "Delete",
+          role: "destructive",
+          handler: () => {
+            this.removeRestaurant(itemId)
+          }
         }
       ]
     });
     await actionSheet.present();
+  }
+
+  async removeRestaurant(id) {
+    await this.RestService.deleteRestaurantById(id);
+    this.allRestaurant = this.allRestaurant.filter(restaurant => {
+      return restaurant.id !== id
+    });
   }
 
   navigateToAddRestaurant(){

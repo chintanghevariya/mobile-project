@@ -53,6 +53,13 @@ export class SearchPage implements OnInit {
           handler: () => {
             this.navigateToEditRestaurant(itemId);
           }
+        },
+        {
+          text: "Delete",
+          role: "destructive",
+          handler: () => {
+            this.removeRestaurant(itemId)
+          }
         }
       ]
     });
@@ -80,6 +87,13 @@ export class SearchPage implements OnInit {
   removeTag(tag:any){
     const index = this.tags.indexOf(tag)
     this.tags.splice(index,1)
+  }
+
+  async removeRestaurant(id) {
+    await this.restaurantService.deleteRestaurantById(id);
+    this.restaurants = this.restaurants.filter(restaurant => {
+      return restaurant.id !== id
+    });
   }
 
 }
