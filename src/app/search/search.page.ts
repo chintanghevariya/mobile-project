@@ -31,7 +31,6 @@ export class SearchPage implements OnInit {
         console.log(data);
       })
       .catch(err => {
-        alert("Maa chud gayi bhenchod");
         console.error(err);
       })
   }
