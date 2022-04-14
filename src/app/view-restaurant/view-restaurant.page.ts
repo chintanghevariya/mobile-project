@@ -44,9 +44,5 @@ export class ViewRestaurantPage implements OnInit {
   navigateToEditRestaurant(id:any){
     this.router.navigateByUrl(`/edit-restuarant?id=${id}`)
   }
-  handleSave(){
-
-    // this.RestService.editRestaurant(this.restaurantId, )
-  }
 
 }

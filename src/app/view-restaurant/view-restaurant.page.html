@@ -13,17 +13,34 @@
   </div>
   <div>
     <div id="container">
-      <ion-text>Review</ion-text>
+      <ion-text>Rating</ion-text>
       <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
     </div>
-    <div class="content">
-      <ion-text>Name : {{restaurant.restaurantName}}</ion-text><br />
-      <ion-text>Address : {{restaurant.address}}</ion-text><br />
-      <ion-text>Description : {{restaurant.description}}</ion-text><br />
-      <ion-text>Tag : {{restaurant.tags}} </ion-text><br /><br />
-      <ion-button (click)="goToLocation()">Get Direction</ion-button>
-      <ion-button (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> <br />
-      <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
-    </div>
+    <div>
+      <ion-card>
+        <ion-card-header >
+          {{restaurant.restaurantName}}
+        </ion-card-header>
+    
+          <ion-item>
+            <ion-icon name="location" item-start></ion-icon>
+            <ion-label>location :</ion-label> 
+            {{restaurant.address}}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-text-outline"></ion-icon>&nbsp;
+            <ion-label>Description : </ion-label>
+            {{restaurant.description}}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="pricetag-outline"></ion-icon>&nbsp;
+            <ion-label>Tag : </ion-label>
+            {{restaurant.tag}}
+          </ion-item>
+      </ion-card>
+      <ion-button expand="block" color="success" (click)="goToLocation()" >Get Direction</ion-button>
+      <ion-button expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
+      <ion-button class="button-large row" color="primary" (click)="appComponent.goBack()">Back</ion-button> 
+    </div> 
   </div>
-</ion-content>
+</ion-content> 
