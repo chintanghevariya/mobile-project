@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     await this.storage.create();
     await this.storage.set("users", []);
     await this.storage.set("restaurants", []);
+    await this.storage.set("reviews", []);
   }
 
   goBack():void{
