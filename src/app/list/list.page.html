@@ -1,29 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>list</ion-title>
+    <ion-title>All Restaurants</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Test</h1>
-  <ion-button (click)="navigateToAddRestaurant()">Add restaurant</ion-button>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>All Restaurants</h1>
+    <ion-button style="padding: 0" (click)="presentActionSheet()" fill="outline">
+      <ion-icon slot="icon-only" name="ellipsis-vertical-circle"></ion-icon>
+    </ion-button>
+  </div>
+  <hr />
   <div *ngIf="allRestaurant.length === 0">
     <ion-text>No restaurants!</ion-text>
   </div>
   <hr />
-  <div style="display: flex; justify-content: space-between; margin: 3px;">
-    <h3>All Restaurants</h3>
-    <ion-button (click)="navigateToFilter()">
-      Filter
-    </ion-button>
-  </div>
   <ion-list *ngFor="let item of allRestaurant">
     <ion-item>
       <ion-label>{{item.id}} - {{item.restaurantName}}</ion-label>
-      <button 
-      (click)='navigateToViewRestaurant(item.id)'>view</button>
-      <button 
-      (click)='navigateToEditRestaurant(item.id)'>Edit</button>
+      <ion-button (click)="presentRestaurantActionSheet(item.id)" slot="end" fill="none">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-circle" color="primary"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
