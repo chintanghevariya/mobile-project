@@ -11,6 +11,8 @@ export class SearchPage implements OnInit {
 
   value: string;
   restaurants: any;
+  currentTagValue: string = "";
+  tags = []
 
   constructor(
     private restaurantService: RestaurantService,
@@ -38,8 +40,24 @@ export class SearchPage implements OnInit {
   navigateToViewRestaurant(id:any){
     this.router.navigateByUrl(`/view-restaurant?id=${Number(id)}`)
   }
+
   navigateToEditRestaurant(id:any){
     this.router.navigateByUrl(`/edit-restuarant?id=${Number(id)}`)
+  }
+
+  addTag() {
+    const tagExists = this.tags.findIndex(tag => {
+      return tag.toLowerCase() === this.currentTagValue.toLowerCase();
+    }) > -1;
+    if (tagExists === false) {
+      this.tags.push(this.currentTagValue);
+      this.currentTagValue = ""
+    }
+  }
+  
+  removeTag(tag:any){
+    const index = this.tags.indexOf(tag)
+    this.tags.splice(index,1)
   }
 
 }
