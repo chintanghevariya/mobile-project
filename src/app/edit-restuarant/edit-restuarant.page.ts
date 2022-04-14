@@ -23,6 +23,7 @@ export class EditRestuarantPage implements OnInit {
   geo={
     lat:1,lng:1
   }
+
   tags = []
   constructor(private RestService:RestaurantService,
               private router :Router,
@@ -57,7 +58,6 @@ export class EditRestuarantPage implements OnInit {
   }
 
   removeTag = (tag:any) => {
-    debugger
     const index = this.tags.indexOf(tag)
     this.tags.splice(index,1)
   }
@@ -76,7 +76,6 @@ export class EditRestuarantPage implements OnInit {
       const { lat, lng } = locationDetails.result.geometry.location;
       geo = { lat, lng };
     }
-    debugger;
     const details = {
       restaurantName: this.name,
       description: this.description,

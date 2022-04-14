@@ -13,6 +13,7 @@ export class AuthService {
     const temp = await Storage.get({key:"users"});
     let allUsers = temp.value?JSON.parse(temp.value):[]
     const user = allUsers.find(user => user.email === email);
+    console.log(user, email);
     if (user === undefined) {
       throw "Email is incorrect";
     }

@@ -49,6 +49,8 @@ export class RestaurantService {
   }) {
     const restaurants = await this.getAllRestaurants();
     const restaurantIndex = restaurants.findIndex(restaurant => restaurant.id === id);
+
+    
     if (restaurantIndex === undefined) {
       throw "Restaurant id is wrong";
     }

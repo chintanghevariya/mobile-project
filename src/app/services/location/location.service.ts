@@ -20,14 +20,14 @@ export class LocationService {
                         error => { resolve(false); }
                     );
                 }
-                else { resolve(false); }
+                else { resolve(true); }
             });
         })
     }
     
     async checkGPSPermission(): Promise<boolean> {
         return await new Promise((resolve, reject) => {
-            if (Capacitor.isNative) {
+            if (Capacitor.isNativePlatform()) {
                 AndroidPermissions.checkPermission(AndroidPermissions.PERMISSION.ACCESS_FINE_LOCATION).then(
                     result => {
                         if (result.hasPermission) {
@@ -39,7 +39,7 @@ export class LocationService {
                     err => { alert(err); }
                 );
             }
-            else { resolve(true); }
+            else { resolve(false); }
         })
     }
 

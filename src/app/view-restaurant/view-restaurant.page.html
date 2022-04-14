@@ -37,9 +37,11 @@
             <ion-label>Tags : </ion-label>
             {{restaurant.tags}}
           </ion-item>
+          <!-- <ion-button *ngIf="userName ===restaurant.userName" expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button> -->
       </ion-card>
+      <ion-button  expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
 
-      <ion-button expand="block" color="warning" (click)="navigateToEditRestaurant(restaurant.id)">Edit</ion-button>
+
 
       <br />
       <div id="container">
@@ -60,6 +62,7 @@
               <div style="display: flex; justify-content: space-between; padding: 0 5px;">
                 <h2>{{ item.userName }}</h2>
                 <h4>Rating: {{ item.rating }}</h4>
+                <button *ngIf="userName === item.userName" (click)=navigateToEditReview(item.reviewId,item.comment,item.rating,item.restaurantId)>Edit</button>
               </div>
               <p style="padding: 0 5px;">
                 {{ item.comment }}

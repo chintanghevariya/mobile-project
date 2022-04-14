@@ -59,7 +59,7 @@ export class ViewRestaurantPage implements OnInit {
   submitReview() {
     this.ReviewService
       .addReview(this.restaurantId, this.userName, this.rating, this.comment)
-      .then(async (review) => {
+      .then( async (review) => {
         const toast = await this.toastController.create({
           message: 'Your review has been added.',
           duration: 2000,
@@ -75,8 +75,7 @@ export class ViewRestaurantPage implements OnInit {
   async getAllReview(){
     await this.ReviewService.allReview(this.restaurantId)
     .then((data)=>{
-      this.allReviews = data
-      console.log(this.allReviews);  
+      this.allReviews = data  
     })
   }
   goToLocation() {
@@ -84,6 +83,10 @@ export class ViewRestaurantPage implements OnInit {
   }
   navigateToEditRestaurant(id: any) {
     this.router.navigateByUrl(`/edit-restuarant?id=${id}`)
+  }
+
+  navigateToEditReview(reviewId:number,comment:any,rating:number,restaurantId:number){
+    this.router.navigate([`/edit-review/${reviewId}/${comment}/${rating}/${restaurantId}`])
   }
 
 }

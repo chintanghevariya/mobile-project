@@ -75,7 +75,9 @@ export class DirectionsPage implements OnInit {
 
   async watchPosition() {
     try {
-      this.watchId = Geolocation.watchPosition({}, (position, err) => {
+      this.watchId = Geolocation.watchPosition({
+        enableHighAccuracy: true
+      }, (position, err) => {
         if (err) { console.log('err', err); return; }
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;

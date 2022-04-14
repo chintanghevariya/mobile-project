@@ -8,6 +8,11 @@ export class ReviewService {
 
   constructor() { }
 
+  public async getAllReviews(){
+    const reviews = await Storage.get({key:"reviews"});
+    return JSON.parse(reviews.value);
+  }
+
   public async addReview(
     restaurantId: number,
     userName: string,
@@ -50,5 +55,28 @@ export class ReviewService {
         value: JSON.stringify(allReviews)
       });
     }
+  }
+
+  public async editReview(reviewId:number,details:{
+    comment:string,
+    rating:number
+    restaurantId: number,
+    userName: string
+    }){
+      
+    const reviews = await this.getAllReviews()
+    const reviewIndex = reviews.findIndex(review => review.reviewId === Number(reviewId))
+    console.log(reviewIndex);
+    
+    if (reviewIndex === undefined) {
+      throw "Review id is wrong";
+    }
+    reviews[reviewIndex] ={
+      // reviewId,
+      ...details
+    };
+    await Storage.set({key:'reviews',value:JSON.stringify(reviews)})
+    return reviews[reviewIndex];
+
   }
 }

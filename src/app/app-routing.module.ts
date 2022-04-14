@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'edit-review/:reviewId/:comment/:rating/:restaurantId',
+    loadChildren: () => import('./edit-review/edit-review.module').then( m => m.EditReviewPageModule)
   }
 ];
 
