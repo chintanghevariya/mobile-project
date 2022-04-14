@@ -38,18 +38,49 @@
     </div>
 
     <div>
-      <div id="container"> 
-        <ion-text >Review</ion-text>
-        <ion-range min="1" max="5" value={{rating}} color="primary"></ion-range>
-      </div>
-      <div class="content">
-          <ion-input [(ngModel)]="name">Name : </ion-input><br/>
-          <ion-input [(ngModel)]="address">Address : </ion-input>
-          <ion-text role='link'(click)="toggleSelectLocationModel()">change address ?</ion-text>
-          <ion-input [(ngModel)]="description">Description : </ion-input><br/>
-          <ion-button (click)="handleSave()">Save</ion-button>
-          <ion-button (click)="appComponent.goBack()">Cancel</ion-button>
+      
+      <div>
+        <ion-card>
+          <ion-card-content>
+          <div>
+            <ion-label>Name :</ion-label>
+            <ion-input [(ngModel)]="name" ></ion-input><br/>
+          </div>
+          <div>
+          <ion-label>Address :</ion-label>
+            <ion-input [(ngModel)]="address" disabled></ion-input>
+          </div>
+          <div>
+            <ion-text color="primary" role='link' (click)="toggleSelectLocationModel()">change address ?</ion-text>
+          </div>
+          <div>
+              <ion-label>Description :</ion-label>
+              <ion-input [(ngModel)]="description"></ion-input>
+          </div>
+            <div>
+              <ion-label>Tags</ion-label>
+              <div style="display: flex;">
+                <ion-input [(ngModel)]="currentTagValue" style="width: 90%" placeholder="Enter here.."></ion-input>
+                <ion-button (click)="addTag()" size="small">
+                  <ion-icon name="add">
+                  </ion-icon>
+                </ion-button>
+              </div>
+              <div>
+                <ion-label style="margin: 0 5px; padding: 3px; justify-self: center;" *ngFor="let tag of tags">
+                    {{ tag }}
+                      <ion-icon color="danger" name="trash" (click)="removeTag(tag)">
+                      </ion-icon>
+                </ion-label>
+              </div>
+              <!-- <io`n-input type="text" placeholder="Enter tags" [(ngModel)]="tags"></ion-input> -->
+            </div>
+          </ion-card-content>
+        </ion-card>
 
+          <ion-button expand="block" (click)="handleSave()">Save</ion-button> 
+          <ion-button expand="block" color="danger" (click)="appComponent.goBack()">Cancel</ion-button>
+        
       </div>
     </div>
   </ion-content>

@@ -16,13 +16,14 @@ export class EditRestuarantPage implements OnInit {
   url = new URLSearchParams(window.location.search)
   restaurantId = Number(this.url.get('id'))
   restaurant:any
-  name:String=''
-  address:String=''
-  description:String=''
+  name:string=''
+  address:string=''
+  description:string=''
+  currentTagValue:string=''
   geo={
     lat:1,lng:1
   }
-  tags:[]
+  tags = []
   constructor(private RestService:RestaurantService,
               private router :Router,
               private mapService:MapService,
@@ -41,6 +42,23 @@ export class EditRestuarantPage implements OnInit {
   toggleSelectLocationModel = () => {
     this.isSelectLocationModalOpen = !this.isSelectLocationModalOpen;
   }
+
+  addTag() {
+    const tagExists = this.tags.findIndex(tag => {
+      return tag.toLowerCase() === this.currentTagValue.toLowerCase();
+    }) > -1;
+    if (tagExists === false) {
+      this.tags.push(this.currentTagValue);
+      this.currentTagValue = ""
+    }
+  }
+
+  removeTag = (tag:any) => {
+    debugger
+    const index = this.tags.indexOf(tag)
+    this.tags.splice(index,1)
+  }
+
   setLocation = (location: any) => {
     this.location = location
     this.address = this.location.description
