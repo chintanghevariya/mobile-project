@@ -67,11 +67,23 @@ export class RestaurantService {
     return true;
   }
 
-  public async searchRestaurants(searchValue: string) {
+  public async searchRestaurants(searchValue: string, tags: string[] = []) {
     const allRestaurants = await this.getAllRestaurants();
     const restaurants = allRestaurants.filter(restaurant => {
-      restaurant.restaurantName.toLowerCase().includes(searchValue.toLowerCase()) ||
-      restaurant.tags.findIndex(tag => tag.toLowerCase().includes(searchValue.toLowerCase()))
+    console.log(restaurant.tags, restaurant.restaurantName);
+    const nameMatches = restaurant.restaurantName.toLowerCase().includes(searchValue.toLowerCase())
+    if (nameMatches) {
+      return true;
+    }
+    console.log(restaurant.tags);
+    for (const tag of tags) {
+      const tagMatched = restaurant.tags.findIndex(addedTag => addedTag.toLowerCase().includes(tag.toLowerCase()))
+      if (tagMatched) {
+        return true;
+      }
+    }
+    console.log(restaurant.tags);
+    return restaurant.tags.findIndex(tag => tag.toLowerCase().includes(searchValue.toLowerCase()));
     });
     return restaurants;
   }

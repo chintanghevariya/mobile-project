@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'edit-restuarant',
     loadChildren: () => import('./edit-restuarant/edit-restuarant.module').then( m => m.EditRestuarantPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
 ];
 

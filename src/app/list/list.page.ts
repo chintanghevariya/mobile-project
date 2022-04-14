@@ -32,4 +32,8 @@ export class ListPage implements OnInit {
   navigateToEditRestaurant(id:any){
     this.router.navigateByUrl(`/edit-restuarant?id=${id}`)
   }
+
+  navigateToFilter() {
+    this.router.navigate(["/search"]);
+  }
 }

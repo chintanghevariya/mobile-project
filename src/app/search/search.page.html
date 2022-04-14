@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div>
+      <ion-label>Restaurant name</ion-label>
+      <ion-input [(ngModel)]="value" placeholder="Enter here.."></ion-input>
+    </div>
+    <div>
+      <ion-label>Tags</ion-label>
+      <ion-input placeholder="Enter here..."></ion-input>
+    </div>
+    <ion-button (click)="search()" expand="block">
+      Search
+    </ion-button>
+  </div>
+  <hr />
+  <ion-list *ngFor="let restaurant of restaurants">
+    <ion-item>
+      <ion-label>{{restaurant.id}} - {{restaurant.restaurantName}}</ion-label>
+      <button 
+      (click)='navigateToViewRestaurant(restaurant.id)'>view</button>
+      <button 
+      (click)='navigateToEditRestaurant(restaurant.id)'>Edit</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -10,6 +10,13 @@
   <div *ngIf="allRestaurant.length === 0">
     <ion-text>No restaurants!</ion-text>
   </div>
+  <hr />
+  <div style="display: flex; justify-content: space-between; margin: 3px;">
+    <h3>All Restaurants</h3>
+    <ion-button (click)="navigateToFilter()">
+      Filter
+    </ion-button>
+  </div>
   <ion-list *ngFor="let item of allRestaurant">
     <ion-item>
       <ion-label>{{item.id}} - {{item.restaurantName}}</ion-label>
@@ -19,6 +26,4 @@
       (click)='navigateToEditRestaurant(item.id)'>Edit</button>
     </ion-item>
   </ion-list>
-
-  <ion-text role="link" (click)="navigateToAddResturant()">Add Resturant?</ion-text>
 </ion-content>
