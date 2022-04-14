@@ -14,7 +14,10 @@
   <div>
     <div id="container">
       <ion-text>Review</ion-text>
-      <ion-range min="1" max="5" value={{rating}} color="primary" disabled></ion-range>
+      <ion-range snaps min="1" max="5" step="1" [(ngModel)]="rating" color="primary">
+        <ion-icon slot="start" size="small" color="danger" name="sad-outline"></ion-icon>
+        <ion-icon slot="end" color="success" name="happy"></ion-icon>
+      </ion-range>
       <ion-textarea [(ngModel)]="comment" placeholder="Enter comment here..."></ion-textarea>
       <ion-button>Submit Review</ion-button>
     </div>
