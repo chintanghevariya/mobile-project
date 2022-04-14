@@ -36,15 +36,9 @@
   <ion-list *ngFor="let restaurant of restaurants">
     <ion-item>
       <ion-label>{{restaurant.id}} - {{restaurant.restaurantName}}</ion-label>
-      <button 
-      (click)='navigateToViewRestaurant(restaurant.id)'>view</button>
-      <button 
-      (click)='navigateToEditRestaurant(restaurant.id)'>Edit</button>
-      <button ion-item (click)='navigateToEditRestaurant(restaurant.id)'> 
-        <ion-icon name="edit" item-start></ion-icon>
-        Edit
-      </button>
-  
+      <ion-button (click)="presentRestaurantActionSheet(restaurant.id)" slot="end" fill="none">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-circle" color="primary"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

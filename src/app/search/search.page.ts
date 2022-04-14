@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
 import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search',
@@ -10,12 +11,13 @@ import { Router } from '@angular/router';
 export class SearchPage implements OnInit {
 
   value: string = "";
-  restaurants: any;
+  restaurants: any = [];
   currentTagValue: string = "";
   tags = []
 
   constructor(
     private restaurantService: RestaurantService,
+    private actionSheetController: ActionSheetController,
     private router:Router
   ) { }
 
@@ -27,12 +29,34 @@ export class SearchPage implements OnInit {
       .restaurantService
       .searchRestaurants(this.value, this.tags)
       .then(data => {
-        this.restaurants = data;
         console.log(data);
+        this.restaurants = data;
+        console.log("Here");
       })
       .catch(err => {
         console.error(err);
       })
+  }
+
+  presentRestaurantActionSheet = async (itemId) => {
+    const actionSheet = await this.actionSheetController.create({
+      header: "Actions",
+      buttons: [
+        {
+          text: "View",
+          handler: () => {
+            this.navigateToViewRestaurant(itemId);
+          }
+        },
+        {
+          text: "Edit",
+          handler: () => {
+            this.navigateToEditRestaurant(itemId);
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
   
   navigateToViewRestaurant(id:any){

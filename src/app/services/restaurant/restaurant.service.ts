@@ -69,23 +69,24 @@ export class RestaurantService {
 
   public async searchRestaurants(searchValue: string, tags: string[] = []) {
     const allRestaurants: any[] = await this.getAllRestaurants();
-    debugger;
+    console.log(searchValue, tags, "SEARCH PARAMS");
     if (searchValue.trim() === "" && tags.length === 0) {
       return [];
     }
     const restaurants = allRestaurants.filter(restaurant => {
-      debugger;
       if (searchValue.trim() !== "") {
         const nameMatches = restaurant.restaurantName.toLowerCase().includes(searchValue.toLowerCase())
         if (nameMatches) {
           return true;
         }
       }
+      console.log(restaurant.tags, "TAGS");
       if (restaurant.tags === undefined) {
         return false;
       }
+      console.log(restaurant.tags, "TAGS");
       for (const tag of tags) {
-        const tagMatched = restaurant.tags.split(',').findIndex(addedTag => addedTag.toLowerCase().includes(tag.toLowerCase())) > -1;
+        const tagMatched = restaurant.tags.findIndex(addedTag => addedTag.toLowerCase().includes(tag.toLowerCase())) > -1;
         if (tagMatched) {
           return true;
         }
