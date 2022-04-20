@@ -13,6 +13,8 @@ export class LoginPage implements OnInit {
   password: string = "";
   error: string = "";
   success: string = "";
+  disable: boolean=true
+  isLoggedIn:boolean = !!localStorage.getItem('userName')
 
   constructor(
     private router: Router,
@@ -20,12 +22,26 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(this.isLoggedIn){
+      this.router.navigateByUrl('list')
+    }
   }
 
   navigateToRegister(){
     this.router.navigate(["/register"])
   }
-
+  onChange(ev:any){
+    if(ev.target.value === ''){
+      this.disable = true
+    }
+    else if(this.email ===""||this.password ==="")
+    {
+      this.disable = true
+    }
+    else{
+      this.disable = false
+    }
+  }
   loginUser() {
     const { email, password } = this;
     this

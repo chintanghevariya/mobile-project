@@ -21,12 +21,17 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
+    
     this.loader()
   }
   async loader(){
      this.allRestaurant = await this.RestService.getAllRestaurants()
   }
 
+  logOut(){
+    localStorage.removeItem('userName')
+    this.router.navigateByUrl('/')
+  }
   presentAllRestaurantActionSheet = async () => {
     const actionSheet = await this.actionSheetController.create({
       header: "Actions",
@@ -41,6 +46,13 @@ export class ListPage implements OnInit {
           text: "Filter",
           handler: () => {
             this.navigateToFilter()
+          }
+        },
+        {
+          text: "Logout",
+          role: "destructive",
+          handler: () => {
+            this.logOut()
           }
         }
       ]

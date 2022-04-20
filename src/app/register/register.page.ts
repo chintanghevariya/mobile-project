@@ -9,12 +9,13 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class RegisterPage implements OnInit {
 
-  firstName : any
-  lastName : any
-  email : any
-  password : any
+  firstName : string =''
+  lastName : string =''
+  email : string =''
+  password : string =''
   success: string;
   error: string;
+  disable:boolean=true
   constructor(
     private router: Router,
     private auth : AuthService
@@ -37,7 +38,18 @@ export class RegisterPage implements OnInit {
       this.success = ""
     });
   }
-
+  onChange(ev:any){
+    if(ev.target.value === ''){
+      this.disable = true
+    }
+    else if(this.firstName ==='' || this.lastName === ''||this.email ===""||this.password ==="")
+    {
+      this.disable = true
+    }
+    else{
+      this.disable = false
+    }
+  }
   goToLogin() {
     this.router.navigate(["/login"]);
   }

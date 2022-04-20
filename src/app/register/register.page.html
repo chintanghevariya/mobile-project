@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>register</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,10 +18,29 @@
       {{ success }}
     </ion-text>
   </div>
-  <ion-input type="text" placeholder="Enter First Name" [(ngModel)]="firstName"></ion-input>
-  <ion-input type="text" placeholder="Enter Last Name" [(ngModel)]="lastName"></ion-input>
-  <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password"></ion-input>
-  <ion-input type="text" placeholder="Enter Email Id" [(ngModel)]="email"></ion-input>
-  <ion-button role="button" (click)="handleRegistration()">Register</ion-button>
-  <ion-text (click)="goToLogin()">Login</ion-text>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">First name</ion-label>
+      <ion-input type="text"[ngModelOptions]="{standalone:true}"[(ngModel)]="firstName" (change)="onChange($event)" required ></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Last name</ion-label>
+      <ion-input type="text"[ngModelOptions]="{standalone:true}"[(ngModel)]="lastName" (change)="onChange($event)" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text"[ngModelOptions]="{standalone:true}"[(ngModel)]="email" (change)="onChange($event)" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [ngModelOptions]="{standalone:true}"[(ngModel)]="password" (change)="onChange($event)" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" (click)="handleRegistration()" [disabled]="disable">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-text style="margin-left: 2%;" (click)="goToLogin()">Already registered? Login</ion-text>
+  </form>
+
 </ion-content>
