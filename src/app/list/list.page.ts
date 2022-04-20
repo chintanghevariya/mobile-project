@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { RestaurantService } from '../services/restaurant/restaurant.service';
+import { EmailService } from '../services/email/email.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -13,7 +14,8 @@ export class ListPage implements OnInit {
   constructor(
     private RestService: RestaurantService,
     private router: Router,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private emailComposer: EmailService
   ) { }
 
   ionViewDidEnter() {
@@ -24,8 +26,8 @@ export class ListPage implements OnInit {
     
     this.loader()
   }
-  async loader(){
-     this.allRestaurant = await this.RestService.getAllRestaurants()
+  async loader() {
+    this.allRestaurant = await this.RestService.getAllRestaurants()
   }
 
   logOut(){
@@ -77,6 +79,12 @@ export class ListPage implements OnInit {
           }
         },
         {
+          text: 'Share',
+          handler: () => {
+            this.ShareApp(itemId)
+          }
+        },
+        {
           text: "Delete",
           role: "destructive",
           handler: () => {
@@ -88,6 +96,22 @@ export class ListPage implements OnInit {
     await actionSheet.present();
   }
 
+  async ShareApp(id) {
+    const canUse = await this.emailComposer.canUse();
+    if (canUse) {
+      const restaurant = await this.RestService.getRestaurantById(id)
+      let email = {
+        subject: 'Restaurant Details',
+        body: restaurant ,
+        isHtml: true
+      }
+      this.emailComposer.send('gmail',email)
+
+    } else {
+      alert("No Email Config Found,Please have related app");
+    }
+  }
+
   async removeRestaurant(id) {
     await this.RestService.deleteRestaurantById(id);
     this.allRestaurant = this.allRestaurant.filter(restaurant => {
@@ -95,14 +119,14 @@ export class ListPage implements OnInit {
     });
   }
 
-  navigateToAddRestaurant(){
+  navigateToAddRestaurant() {
     this.router.navigateByUrl('/add-restaurant')
   }
 
-  navigateToViewRestaurant(id:any){
+  navigateToViewRestaurant(id: any) {
     this.router.navigateByUrl(`/view-restaurant?id=${id}`)
   }
-  navigateToEditRestaurant(id:any){
+  navigateToEditRestaurant(id: any) {
     this.router.navigateByUrl(`/edit-restuarant?id=${id}`)
   }
 
