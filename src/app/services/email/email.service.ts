@@ -10,9 +10,19 @@ export class EmailService {
     private emailComposer: EmailComposer
   ) { }
 
+  async canUse() {
+    return await this.emailComposer.isAvailable();
+  }
+
   async getClients() {
-    const clients = await this.emailComposer.getClients();
-    return clients;
+    const clients = await this.emailComposer.getClients()
+    console.log(clients);
+
+    // this.emailComposer.getClients().then((apps: []) => {
+    //   // Returns an array of configured email clients for the device
+    //   console.log(apps);
+
+    // });
   }
 
   send(app, email) {
